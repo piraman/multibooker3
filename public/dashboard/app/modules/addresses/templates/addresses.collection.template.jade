@@ -1,0 +1,68 @@
+.row
+	.col-md-12.page-header
+		h1 Адреса залов
+.row
+	.col-md-12
+		table.table
+			thead
+				tr
+					th #
+					th(ng-repeat='field in addresses.meta.fields', ng-bind='field')
+			tbody
+				tr(
+					context-menu,
+					data-target='menu{{$index}}',
+					ng-class='{\'active\': selected === $index}',
+					ng-click='toggle($index)',
+					ng-dblclick='read($index)',
+					ng-repeat='address in addresses',
+				)
+					th(ng-bind='$index + 1')
+					td(ng-repeat='field in addresses.meta.fields', ng-bind='address[field]')
+.row
+	.col-md-12
+		.dropdown.position-fixed(ng-repeat='address in addresses' id='menu{{$index}}')
+			ul.dropdown-menu
+				li
+					a.pointer(ng-click='read($index)') Открыть
+				li
+					a.pointer(ng-click='delete($index)') Удалить
+.row
+	.col-md-12
+		.btn-group
+			button.btn.btn-default(ng-click='readSelected()', ng-disabled='selected == null') Открыть
+			button.btn.btn-default(ng-click='deleteSelected()', ng-disabled='selected == null') Удалить
+			button.btn.btn-default(ng-click='create()') Создать
+		pagination.pagination.pull-right(
+			boundary-links='true',
+			items-per-page='pagination.limit',
+			max-size='pagination.max',
+			ng-change='pagination.change()',
+			ng-model='pagination.current',
+			num-pages='pagination.pages',
+			rotate='false',
+			total-items='pagination.total',
+		)
+
+
+
+
+
+
+
+
+
+
+
+//- table.table.table-bordered
+//- 	thead
+//- 		tr
+//- 			th(ng-repeat='field in collection.meta.fields') {{field}}
+//- 	tbody
+//- 		tr(ng-repeat='document in collection', ng-dblclick='openDocument($index)', ng-click='toggleSelected($index)', ng-class='{\'active\': selected === $index}')
+//- 			td(ng-repeat='field in collection.meta.fields') {{document[field]}}
+//- .btn-group
+//- 	button.btn.btn-default(ng-click='openDocument2()', ng-disabled='selected == null') Open
+//- 	button.btn.btn-default(ng-click='deleteDocument()', ng-disabled='selected == null') Delete
+//- 	button.btn.btn-default(ng-click='createDocument()') Create
+

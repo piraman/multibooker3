@@ -1,0 +1,15 @@
+.row
+	.col-md-12.page-header
+		h1
+			| Залы
+			small  / новый
+.row
+	.col-md-12
+		form.form-horizontal
+			.form-group
+				label.col-md-2.control-label Зал
+				.col-md-10
+					input.form-control(ng-model='hall.name')
+			.form-group
+				.col-md-offset-2.col-md-10
+					button.btn.btn-default(ng-click='create()') Save
