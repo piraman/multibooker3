@@ -18,7 +18,7 @@ define [
 	# './modules/menu/menu.index'
 	# './modules/kits/index'
 	# './modules/products/index'
-	# './modules/categories/index'
+	'./modules/events/index'
 	'./modules/halls/index'
 	'./modules/addresses/index'
 ], (angular) ->
@@ -38,13 +38,22 @@ define [
 		# 'app.user'
 		# 'ngTagsInput'
 		# 'app.menu'
-		'ng-context-menu'
 		'app.addresses'
 		'app.halls'
+		'app.events'
+		'ng-context-menu'
 		'restangular'
 		'ui.bootstrap'
 		'ui.router'
 	]
+	app.directive 'typeaheadWatchChanges', ->
+		require: ['ngModel']
+		link: (s, e, a, c) ->
+			console.log arguments
+			s.$watch 'item', (value) ->
+				c[0].$setViewValue value
+				console.log 'value', value
+				console.log '$setViewValue', c[0].$setViewValue.$viewValue
 	app.constant 'API_URL', location.origin + '/api/v1'
 	app.config [
 		'$compileProvider'

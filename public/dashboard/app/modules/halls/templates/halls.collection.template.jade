@@ -1,24 +1,27 @@
 .row
 	.col-md-12.page-header
 		h1 Залы
+
 .row
 	.col-md-12
-		table.table
-			thead
-				tr
-					th #
-					th(ng-repeat='field in halls.meta.fields', ng-bind='field')
-			tbody
-				tr(
-					context-menu,
-					data-target='menu{{$index}}',
-					ng-class='{\'active\': selected === $index}',
-					ng-click='toggle($index)',
-					ng-dblclick='read($index)',
-					ng-repeat='hall in halls',
-				)
-					th(ng-bind='$index + 1')
-					td(ng-repeat='field in halls.meta.fields', ng-bind='hall[field]')
+		.collection-table-container
+			table.table
+				thead
+					tr
+						th #
+						th(ng-repeat='field in halls.meta.fields', ng-bind='field')
+				tbody
+					tr(
+						context-menu,
+						data-target='menu{{$index}}',
+						ng-class='{\'active\': selected === $index}',
+						ng-click='toggle($index)',
+						ng-dblclick='read($index)',
+						ng-repeat='hall in halls',
+					)
+						th(ng-bind='$index + 1')
+						td(ng-repeat='field in halls.meta.fields', ng-bind='hall[field]')
+
 .row
 	.col-md-12
 		.dropdown.position-fixed(ng-repeat='hall in halls' id='menu{{$index}}')
@@ -27,6 +30,9 @@
 					a.pointer(ng-click='read($index)') Открыть
 				li
 					a.pointer(ng-click='delete($index)') Удалить
+
+br
+
 .row
 	.col-md-12
 		.btn-group

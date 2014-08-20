@@ -1,3 +1,0 @@
-define [
-	'./controllers/categories.controller'
-]

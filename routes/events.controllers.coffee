@@ -2,10 +2,10 @@ extend = require 'extend'
 http = require 'http'
 config = require './../config'
 
-halls =
+events =
 	find: (req, res) -> 
-		query = command: 'get', object: 'hall'
-		query.order_by = (req.query.sortby or 'hall_id') + ' ' + (req.query.sort or 'desc')
+		query = command: 'get', object: 'action'
+		query.order_by = (req.query.sortby or 'action_id') + ' ' + (req.query.sort or 'desc')
 		query.page_no = req.query.page or 1
 		query.rows_max_num = req.query.limit or 10
 		where = []
@@ -29,12 +29,12 @@ halls =
 			mbres.on 'data', (chunk) -> chunks += chunk
 			mbres.on 'end', -> res.json config.trasformMbResponse chunks
 	create: (req, res) ->
-		url = config.createRequestUrl extend command: 'new', object: 'hall', req.body
+		url = config.createRequestUrl extend command: 'new', object: 'action', req.body
 		http.get url, (mbres) ->
 			mbres.setEncoding 'utf8'
 			mbres.on 'data', (chunk) -> res.json chunk
 	read: (req, res) ->
-		url = config.createRequestUrl command: 'get', object: 'hall', where: 'hall_id = ' + req.params.id
+		url = config.createRequestUrl command: 'get', object: 'action', where: 'action_id = ' + req.params.id
 		http.get url, (mbres) ->
 			mbres.setEncoding 'utf8'
 			chunks = ''
@@ -44,26 +44,15 @@ halls =
 				data = transformedData.data
 				transformedData.data = data[0]
 				res.json transformedData
-
-
-				# res.json config.trasformMbResponse chunks
-
-
-			# mbres.setEncoding 'utf8'
-			# mbres.on 'data', (chunk) ->
-			# 	transformedData = config.trasformMbResponse chunk
-			# 	data = transformedData.data
-			# 	transformedData.data = data[0]
-			# 	res.json transformedData
 	update: (req, res) ->
-		url = config.createRequestUrl (extend command: 'modify', object: 'hall', req.body)
+		url = config.createRequestUrl (extend command: 'modify', object: 'action', req.body)
 		http.get url, (mbres) ->
 			mbres.setEncoding 'utf8'
 			mbres.on 'data', (chunk) -> res.json chunk
 	'delete': (req, res) ->
-		url = config.createRequestUrl command: 'remove', object: 'hall', hall_id: req.params.id, objversion: req.query.objversion
+		url = config.createRequestUrl command: 'remove', object: 'action', action_id: req.params.id, objversion: req.query.objversion
 		http.get url, (mbres) ->
 			mbres.setEncoding 'utf8'
 			mbres.on 'data', (chunk) -> res.json chunk
 
-module.exports = halls
+module.exports = events

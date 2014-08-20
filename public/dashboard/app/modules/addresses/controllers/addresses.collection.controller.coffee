@@ -10,16 +10,10 @@ define [
 		'Restangular'
 		($scope, $state, $location, Restangular) ->
 			# console.log '6666666'
-			describe 'test2', ->
-				it 'should be empty'
 			search = do $location.search
 			$scope.pagination = max: 5, total: null, pages: null, current: null, limit: search.limit or 10
 			$scope.selected = null
 			$scope.products = []
-			describe 'test2', ->
-				it 'proucts should be empty', ->
-					expect $scope.products.length
-					.toBe 1
 			Restangular
 				.withConfig (RestangularConfigurer) -> RestangularConfigurer.setRestangularFields id: 'addr_id'
 				.all 'addresses'

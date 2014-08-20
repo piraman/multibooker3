@@ -1,0 +1,166 @@
+.row
+	.col-md-12
+		ul.nav.nav-tabs
+			li(ng-class='{\'active\': tab === 1}')
+				a(ng-click='tab = 1') Общее
+			li(ng-class='{\'active\': tab === 2}')
+				a(ng-click='tab = 2') Отделения
+			li(ng-class='{\'active\': tab === 3}')
+				a(ng-click='tab = 3') Доступ агнетов
+		.tab-content(ng-init='tab = 1')
+			.tab-pane(ng-class='{\'active\': tab === 1}')
+				br
+				form.form-horizontal
+					.form-group
+						label.col-md-2.control-label Номер
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Название
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Вторая строка названия
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Дата
+						.col-md-10
+							//- input.form-control(ng-model='event.action_id')
+							//- datepicker(ng-model='event.action_date')
+							.input-group
+								input.form-control(
+									datepicker-popup='{{datepicker.format}}'
+									ng-model='event.action_date'
+									is-open='opened'
+									min-date='datepicker.date.min'
+									max-date='datepicker.date.max'
+									datepicker-options='datepicker.options'
+									date-disabled='disabled(date, mode)'
+									ng-required='true'
+									close-text='Закрыть'
+								)
+								span.input-group-btn
+									button.btn.btn-default(ng-click='open($event)')
+										i.fa.fa-calendar
+					.form-group
+						label.col-md-2.control-label Адрес
+						.col-md-10
+							.input-group
+								input.form-control(
+									ng-model='item'
+									placeholder='loading'
+									typeahead-watch-changes
+									typeahead='address as address.addr for address in getAddresses($viewValue)'
+									typeahead-loading='loadingAddresses'
+								)
+								.input-group-btn
+									button.btn.btn-default(ng-click='input(\' \', 97)')
+										i.fa.fa-angle-double-down
+									button.btn.btn-default(ng-if='loadingAddresses')
+										i.fa.fa-refresh.fa-spin
+									button.btn.btn-default(ng-if='!loadingAddresses' ng-click='clear()')
+										i.fa.fa-times
+
+
+							i.fa.fa-refresh.fa-spin(ng-show='loadingAddresses')
+					.form-group
+						label.col-md-2.control-label Тип бланков
+						.col-md-10
+							input.form-control(ng-model='event.ticket_pack_type')
+							//- input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Статус
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Схема создана
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Зал
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Схема зала
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Продажа через веб
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Возрастная категория
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Продолжительность
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Наценка 'Мир Билета'
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Жанр
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Тип зрелища
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label URL логотипа билета
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Режисер
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Сценарист
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Описание
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Актеры
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Аннотация
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Организатор мероприя
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Поставщик билетов
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Постер
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+					.form-group
+						label.col-md-2.control-label Отделения
+						.col-md-10
+							input.form-control(ng-model='event.action_id')
+			.tab-pane(ng-class='{\'active\': tab === 2}')
+				br
+				p 2
+			.tab-pane(ng-class='{\'active\': tab === 3}')
+				br
+				p 3
+//- 	.form-group
+//- 		label.col-md-2.control-label Address
+//- 		.col-md-10
+//- 			typeahead(typeahead-model='hall', typeahead-id-column='addr_id', typeahead-text-column='addr', typeahead-endpoint='addresses')
+//- 	.form-group
+//- 		.col-md-offset-2.col-md-10
+//- 			button.btn.btn-default(ng-click='saveDocument()') Сохранить
+
+

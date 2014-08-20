@@ -1,0 +1,155 @@
+.row
+	.col-md-12.page-header
+		h1 Мероприятия
+
+.row
+	.col-md-12
+		input.form-control
+
+.row
+	.col-md-12
+		.collection-table-container
+			table.table
+				thead
+					tr
+						th #
+						th(ng-repeat='field in events.meta.fields', ng-bind='field')
+				tbody
+					tr(
+						context-menu,
+						data-target='menu{{$index}}',
+						ng-class='{\'active\': selected === $index}',
+						ng-click='toggle($index)',
+						ng-dblclick='read($index)',
+						ng-repeat='event in events',
+					)
+						th(ng-bind='$index + 1')
+						td(ng-repeat='field in events.meta.fields', ng-bind='event[field]')
+
+.row
+	.col-md-12
+		.dropdown.position-fixed(ng-repeat='event in events' id='menu{{$index}}')
+			ul.dropdown-menu
+				li
+					a.pointer(ng-click='read($index)') Открыть
+				li
+					a.pointer(ng-click='delete($index)') Удалить
+
+br
+
+.row
+	.col-md-12
+		.btn-group
+			button.btn.btn-default(ng-click='readSelected()', ng-disabled='selected == null') Открыть
+			button.btn.btn-default(ng-click='deleteSelected()', ng-disabled='selected == null') Удалить
+			button.btn.btn-default(ng-click='create()') Создать
+		pagination.pagination.pull-right(
+			boundary-links='true',
+			items-per-page='pagination.limit',
+			max-size='pagination.max',
+			ng-change='pagination.change()',
+			ng-model='pagination.current',
+			num-pages='pagination.pages',
+			rotate='false',
+			total-items='pagination.total',
+		)
+
+
+
+
+
+
+
+
+//- .row
+//- 	.col-md-12
+//- 		.panel.panel-default
+//- 			.panel-heading
+//- 				.row
+//- 					.col-md-2
+//- 						h3.panel-title Events
+//- 					.col-md-10
+//- 						.btn-group.pull-right
+//- 							button.btn.btn-default(ng-click='filtersCollapsed = !filtersCollapsed') Filters
+//- 			.panel-body(collapse='filtersCollapsed')
+//- 				.row
+//- 					.col-md-3
+//- 						label Date from:
+//- 						.input-group
+//- 							input.form-control(
+//- 								close-text='Close',
+//- 								date-disabled='dateFromDisabled(date, mode)',
+//- 								datepicker-options='dateFromOptions',
+//- 								datepicker-popup='{{dateFormat}}',
+//- 								is-open='dateFromIsOpen',
+//- 								ng-model='dateFrom',
+//- 								ng-required='true',
+//- 							)
+//- 							span.input-group-btn
+//- 								button.btn.btn-default(ng-click='openDateFrom($event)')
+//- 									i.glyphicon.glyphicon-calendar
+//- 					.col-md-3
+//- 						label Date to:
+//- 						.input-group
+//- 							input.form-control(
+//- 								close-text='Close',
+//- 								date-disabled='dateToDisabled(date, mode)',
+//- 								datepicker-options='dateToOptions',
+//- 								datepicker-popup='{{dateFormat}}',
+//- 								is-open='dateToIsOpen',
+//- 								ng-model='dateTo',
+//- 								ng-required='true',
+//- 							)
+//- 							span.input-group-btn
+//- 								button.btn.btn-default(ng-click='openDateTo($event)')
+//- 									i.glyphicon.glyphicon-calendar
+//- 				br
+//- 				.row
+//- 					.col-md-12
+//- 						.btn-group
+//- 							button.btn.btn-default(ng-click='applyFilters()') Apply
+//- 							button.btn.btn-default(ng-click='resetFilters()') Reset
+//- 			table.table.table-bordered.table-scroll-x
+//- 				thead
+//- 					tr
+//- 						th.active #
+//- 						th.active(ng-repeat='field in events.meta.fields') {{field}}
+//- 				tbody
+//- 					tr(
+//- 						context-menu,
+//- 						data-target='menu{{$index}}',
+//- 						ng-class='{\'active\': selected === $index}',
+//- 						ng-click='toggle($index)',
+//- 						ng-dblclick='open($index)',
+//- 						ng-repeat='event in events',
+//- 					)
+//- 						th.active {{$index + 1}}
+//- 						td(ng-repeat='field in events.meta.fields') {{event[field]}}
+//- 			section(ng-repeat='event in events')
+//- 				.dropdown.position-fixed(id='menu{{$index}}')
+//- 					ul.dropdown-menu
+//- 						li
+//- 							a.pointer(ng-click='open($index)') Open
+//- 						li
+//- 							a.pointer(ng-click='delete($index)') Delete
+//- 			.panel-footer
+//- 				.btn-group(dropdown)
+//- 					button.btn.btn-default(ng-click='openSelected()', ng-disabled='selected == null') Open
+//- 					button.btn.btn-default(ng-click='deleteSelected()', ng-disabled='selected == null') Delete
+//- 					button.btn.btn-default(ng-click='create()') Create
+//- 					button.btn.btn-default.dropdown-toggle Documents per page 
+//- 						span.caret
+//- 					ul.dropdown-menu.dropdown-menu-right(ng-init='limits = [10, 20, 50, 100]')
+//- 						li(ng-repeat='limit in limits')
+//- 							a(href='', ng-click='changeLimit(limit)') {{limit}}
+//- 				pagination.pagination.pull-right.collection-pagination(
+//- 					boundary-links='true',
+//- 					items-per-page='limit',
+//- 					max-size='max',
+//- 					ng-change='changePage()',
+//- 					ng-model='current',
+//- 					num-pages='pages',
+//- 					rotate='false',
+//- 					total-items='total',
+//- 				)
+

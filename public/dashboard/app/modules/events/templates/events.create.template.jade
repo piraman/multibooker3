@@ -1,0 +1,14 @@
+form.form-horizontal
+	.form-group
+		label.col-md-2.control-label Hall name
+		.col-md-10
+			input.form-control(ng-model='hall.name')
+	.form-group
+		label.col-md-2.control-label Address
+		.col-md-10
+			typeahead(typeahead-model='hall', typeahead-id-column='addr_id', typeahead-text-column='addr', typeahead-endpoint='addresses')
+	.form-group
+		.col-md-offset-2.col-md-10
+			button.btn.btn-default(ng-click='saveDocument()') Save
+
+

@@ -2,7 +2,7 @@ define [
 	'angular'
 	'../halls.module'
 ], (angular, halls) ->
-	'use strict'
+
 	halls.controller 'HallsCollectionController', [
 		'$scope'
 		'$state'

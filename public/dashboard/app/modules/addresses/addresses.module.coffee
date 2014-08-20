@@ -16,7 +16,7 @@ define [
 			$stateProvider
 				.state 'addresses',
 					abstract: yes
-					template: '<ui-view class=\'addresses-container\'></ui-view>'
+					template: '<ui-view class=\'addresses-view-container\'></ui-view>'
 					url: '/addresses'
 				.state 'addresses.collection',
 					templateUrl: './app/modules/addresses/templates/addresses.collection.template.html'

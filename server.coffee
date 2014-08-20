@@ -14,6 +14,7 @@ app.use (body.urlencoded extended: yes)
 # load app routes controllers
 addresses = require './routes/addresses.controllers'
 halls = require './routes/halls.controllers'
+events = require './routes/events.controllers'
 
 # configure app routes
 router.route '/addresses'
@@ -31,6 +32,14 @@ router.route '/halls/:id'
 	.get halls.read
 	.put halls.update
 	.delete halls.delete
+
+router.route '/events'
+	.get events.find
+	.post events.create
+router.route '/events/:id'
+	.get events.read
+	.put events.update
+	.delete events.delete
 
 app.use '/api/v1', router
 

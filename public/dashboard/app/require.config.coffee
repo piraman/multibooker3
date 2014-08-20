@@ -19,7 +19,7 @@ require.config
 		restangular: './../bower_components/restangular/dist/restangular'
 		# textangular: './../bower_components/textAngular/dist/textAngular.min'
 		# textangularsanitize: './../bower_components/textAngular/dist/textAngular-sanitize.min'
-		uibootstrap: './../bower_components/angular-bootstrap/ui-bootstrap-tpls.min'
+		uibootstrap: './../bower_components/angular-bootstrap/ui-bootstrap-tpls'
 		uirouter: './../bower_components/angular-ui-router/release/angular-ui-router'
 		contextmenu: './../bower_components/ng-context-menu/dist/ng-context-menu'
 	shim:
